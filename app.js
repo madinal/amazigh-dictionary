@@ -1,6 +1,6 @@
 const myMap = new Map();
 let definitions = [];
-
+let posmap = []
 
 fetch('dictionary.json')
   .then(response => response.text())
@@ -8,6 +8,13 @@ fetch('dictionary.json')
 	definitions = JSON.parse(text);
   })
   .catch(error => console.error('Error fetching dictionary:', error));
+
+fetch('posmap.json')
+  .then(response => response.text())
+  .then(text => {
+	posmap = JSON.parse(text);
+  })
+  .catch(error => console.error('Error fetching pos map:', error));
 
 config = {
 	selector: "#searchInput",
@@ -152,7 +159,7 @@ function wordToHtml(data) {
 	
 	const tifi = word[0]
 	const latin = word[1]
-	const pos = word[2]
+	const pos = posmap[word[2]]
 	b.textContent = tifi + ' ';
 	i.textContent = `[${latin}]`;
 	h5.appendChild(b);
