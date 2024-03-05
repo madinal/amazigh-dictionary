@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dictionary App</title>
+    <link rel="stylesheet" href="autoComplete.min.css">
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<h1>English Amazigh Dictionary ⵎⵙⵎⵓⵏ ⴰⵡⴰⵍ ⵏ ⵜⵎⴰⵣⵉⵖⵜ</h1>
+	<h3>Amazigh Arabic French English</h3>
+	<span class="small-gray-text">Experiment by 𝕏 @AAMountaine based on DGLA</span>
+	<div><br>
+	<table><tr><th>ⴰ</th><th>ⴱ</th><th>ⴳ</th><th>ⴳⵯ</th><th>ⴷ</th><th>ⴹ</th><th>ⴻ</th><th>ⴼ</th><th>ⴽ</th><th>ⴽⵯ</th><th>ⵀ</th><th>ⵃ</th><th>ⵄ</th><th>ⵅ</th><th>ⵇ</th><th>ⵉ</th><th>ⵊ</th><th>ⵍ</th><th>ⵎ</th><th>ⵏ</th><th>ⵓ</th><th>ⵔ</th><th>ⵕ</th><th>ⵖ</th><th>ⵙ</th><th>ⵚ</th><th>ⵛ</th><th>ⵜ</th><th>ⵟ</th><th>ⵡ</th><th>ⵢ</th><th>ⵣ</th><th>ⵥ</th></tr><tr><td>a</td><td>b</td><td>g</td><td>gʷ</td><td>d</td><td>ḍ</td><td>e</td><td>f</td><td>k</td><td>kʷ</td><td>h</td><td>ḥ</td><td>ɛ</td><td>x</td><td>q</td><td>i</td><td>j</td><td>l</td><td>m</td><td>n</td><td>u</td><td>r</td><td>ṛ</td><td>ɣ</td><td>s</td><td>ṣ</td><td>c</td><td>t</td><td>ṭ</td><td>w</td><td>y</td><td>z</td><td>ẓ</td></tr><tr><td>ا</td><td>ب</td><td>گ</td><td>گۥۥ</td><td>د</td><td>ض</td><td>اْ</td><td>ف</td><td>ک</td><td>کۥۥ</td><td>هـ</td><td>ح</td><td>ع</td><td>خ</td><td>ق</td><td>ي</td><td>ج</td><td>ل</td><td>م</td><td>ن</td><td>وُ</td><td>ر</td><td>ۘر</td><td>غ</td><td>س</td><td>ص</td><td>ش</td><td>ت</td><td>ط</td><td>وْ</td><td>يْ</td><td>ز</td><td>ژ</td></tr></table>
+	</div>
+	<hr>
+	<p class="gray-opacity">You can search for: tawargit, ⵜⴰⵡⴰⵔⴳⵉⵜ, tiwirga, ⵜⵉⵡⵉⵔⴳⴰ, حُلْم, حلم, rêve, dream</p>
+    <input type="text" id="searchInput" spellcheck="false" autocorrect="off" aria-autocomplete="both" placeholder="Enter a word" tabindex="1">
+    <button onclick="searchWord()">Search</button>
+    <div id="definition"></div>
+	<script src="autoComplete.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
