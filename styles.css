@@ -2,6 +2,7 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
 	position: absolute;
+	max-width: 800px;
     left: 20%;
     top: 7%;
 }
@@ -21,13 +22,21 @@ input[type="text"] {
 }
 
 button {
-    padding: 10px 20px;
+    padding: 10px 15px;
     background-color: #007bff;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
+
+select {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+
 
 #definition {
     margin-top: 20px;
@@ -52,4 +61,67 @@ td {
     font-size: x-small;
     color: gray;
 	opacity: 0.5;
+}
+
+.tab-btn {
+  opacity: 0.5;
+  cursor: pointer;
+  transition: opacity;
+  transition-duration: 0.25s;
+}
+
+.tab-btn.selected {
+  opacity: 1;
+}
+
+.tab-btn:hover {
+  opacity: 1;
+}
+
+.tab-content {
+  display: block;
+}
+
+.tab-content.hidden {
+  display: none;
+}
+
+.translator {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+textarea {
+    width: 90%;
+    height: 150px;
+    margin: 10px;
+}
+
+button {
+    padding: 10px 20px;
+}
+
+.translations {
+    display: flex;
+    flex-wrap: wrap;
+	margin-bottom: 100px;
+}
+
+.word-container {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+	gap: 10px;
+}
+
+.word {
+	position: relative;
+}
+
+.translation {
+	opacity: 0.5;
+	font-size: 0.8em;
+	margin-left: 5px; /* Add space between word and translation */
+	margin-right: 5px;
+    margin-bottom: 5px;
 }

@@ -2,6 +2,38 @@ const myMap = new Map();
 let definitions = [];
 let posmap = []
 
+
+
+const app = document.getElementById("app");
+const tabButtons = app.querySelectorAll(".tab-btn");
+const tabs = app.querySelectorAll(".tab-content");
+// Set first tab-btn as selected and unhide the first tab
+tabButtons[0].classList.toggle("selected", true);
+tabs[0].classList.toggle("hidden", false);
+
+tabButtons.forEach((tabButton) => {
+  tabButton.addEventListener("click", (e) => {
+	
+    // Deselect all tab buttons...
+    Array.from(e.target.parentNode.children).forEach((tabBtn) => {
+      tabBtn.classList.toggle("selected", false);
+    });
+    // Then mark this one as selected
+    e.target.classList.toggle("selected", true);
+
+    const selectedTabId = e.target.dataset.tabContentId;
+    const selectedTab = document.getElementById(selectedTabId);
+
+    // Hide all the tabs...
+    Array.from(selectedTab.parentNode.children).forEach((tab) => {
+      tab.classList.toggle("hidden", true);
+    });
+    // Unhide selected tab
+    selectedTab.classList.toggle("hidden", false);
+  });
+});
+
+
 fetch('dictionary.json')
   .then(response => response.text())
   .then(text => {
@@ -223,3 +255,85 @@ function wordToHtml(data) {
 	return div;
 }
 
+
+const selectElement = document.getElementById('language');
+
+selectElement.addEventListener('change', function() {
+	let inputText = document.getElementById('inputText').value.trim();
+	if (inputText.length > 0) {
+		translateText();
+	}
+	
+});
+
+
+function translateText() {
+	
+	const selectElement = document.getElementById('language');
+	const selectedOptionId = selectElement.value;
+	const langId = parseInt(selectedOptionId);
+	
+    // Get the input text from the textarea
+    let inputText = document.getElementById('inputText').value.trim();
+	const tokens = inputText.match(/[\p{L}\p{N}]+|[^\s]/gu);
+	const regex = /[\p{L}]/u;     
+	
+	const translations = {};
+	
+	for (const token of tokens) {
+		
+		if (regex.test(token) && token.length > 1) {
+			
+			const entryIds = myMap.get(token);
+			
+			if (typeof entryIds !== 'undefined') {
+				
+				let entryId = entryIds[0]
+				let deff = definitions[entryId]
+				const senses = deff[1]
+				const fsens = senses[0]
+				//const frenchWord = fsens[0]
+				const arabicWord = fsens[langId]
+				//const englishWord = fsens[2]
+				translations[token] = arabicWord;
+			}
+		}
+	}
+	
+	const translationsContainer = document.getElementById('translations');
+	translationsContainer.innerHTML = '';
+	
+	tokens.forEach((word, index) => {
+		
+		const wordElement = document.createElement('span');
+		wordElement.textContent = word;
+		
+		if (word in translations) {
+			
+			const translation = translations[word];
+			const translationSpan = document.createElement('span');
+			translationSpan.classList.add('translation');
+			translationSpan.textContent = translation;
+			wordElement.appendChild(translationSpan);
+			
+			wordElement.addEventListener('mouseover', function() {
+				translationSpan.style.opacity = '1';
+			});
+
+			wordElement.addEventListener('mouseout', function() {
+				translationSpan.style.opacity = '0.5';
+			});
+		
+		} else {
+			
+			const spaceSpan = document.createElement('span');
+			spaceSpan.textContent = '\u00A0'; // Unicode for non-breaking space
+			wordElement.appendChild(spaceSpan);
+		
+		}
+		
+		translationsContainer.appendChild(wordElement);
+		
+	});
+	
+}
